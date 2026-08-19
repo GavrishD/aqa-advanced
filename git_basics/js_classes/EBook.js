@@ -13,11 +13,17 @@ class EBook extends Book {
   }
 
   set format(value) {
-    if (!value || value.trim() === "") {
-      console.log("Error: The book format cannot be empty");
+    if (typeof value !== "string" || value.trim() === "") {
+      console.log("Error: The book format must be a non-empty string");
       return;
     }
+
     this._format = value.trim();
+  }
+
+  // Convert Book to EBook
+  static fromBook(book, format) {
+    return new EBook(book.title, book.author, book.year, format);
   }
 
   printInfo() {
@@ -26,11 +32,5 @@ class EBook extends Book {
     );
   }
 }
-
-// Book
-// const book = new EBook("Dune", "Frank Herbert", 1965, "PDF");
-
-// Book Requests
-// book.printInfo();
 
 module.exports = EBook;

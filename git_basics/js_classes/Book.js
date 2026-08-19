@@ -13,10 +13,11 @@ class Book {
   }
 
   set title(value) {
-    if (!value || value.trim() === "") {
-      console.log("Error: The book title cannot be empty");
+    if (typeof value !== "string" || value.trim() === "") {
+      console.log("Error: The book title must be a non-empty string");
       return;
     }
+
     this._title = value.trim();
   }
 
@@ -26,10 +27,11 @@ class Book {
   }
 
   set author(value) {
-    if (!value || value.trim() === "") {
-      console.log("Error: The author's name cannot be empty");
+    if (typeof value !== "string" || value.trim() === "") {
+      console.log("Error: The author's name must be a non-empty string");
       return;
     }
+
     this._author = value.trim();
   }
 
@@ -66,19 +68,5 @@ class Book {
     );
   }
 }
-
-// Book 1
-// const book1 = new Book("The Hobbit", "J.R.R. Tolkien", 1937);
-
-// Book 2
-// const book2 = new Book(
-//   "Harry Potter and the Philosopher's Stone",
-//   "J.K. Rowling",
-//   1997
-// );
-
-// Book Requests
-// book1.printInfo();
-// book2.printInfo();
 
 module.exports = Book;
